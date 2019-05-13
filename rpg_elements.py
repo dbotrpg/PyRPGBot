@@ -1,7 +1,5 @@
 import random
 
-import random
-
 class Weapon:
     ### Requires a Name(str), damage(int), seed(list, which consists of 3 integers.)
     ## To keep it fair, the seed should NEVER contain items highter then 100.
@@ -22,11 +20,8 @@ class Weapon:
             self.hidden_level = seed[1]
             self.usable_at = seed[2]
         if self.level >= 10:
-            print('Checkpoint 1 hit.')
-
             print(self.damage)
             if self.hidden_level >=20:
-                print('checkpoint 2 hit.')
                 dam_buf = self.hidden_level / random.randrange(10, 50)
                 actdamage = self.damage * dam_buf
                 self.damage = round(actdamage)
@@ -36,12 +31,18 @@ class Weapon:
             self.damage = self.damage * 0.2
 
 class class_base:
+    #Takes name(str), attributes (dict)
     def __init__(self, name, attributes):
         self.name = name
         self.attributes = attributes
+        if "health" or "Health" in self.attributes:
+            healthbuff = self.attributes.get("health")
+            self.healthbuff = healthbuff
+            print(healthbuff)
     
 
 class Player:
+    ### Takes name(str), race(See class race), weapon(see class weapon), perks(see class Perks), class_base(See class_base, defines char. class)
     def __init__(self, name, race, weapon, perks, class_base):
         self.name = name
         self.race = race
@@ -64,6 +65,7 @@ class Player:
             return attack
 
 class Enemy:
+    ### Takes a name(str), race_enemy(see class race_enemy.), weapon(see class weapon.), loot(list), is_boss boolean
     def __init__(self, name, race, weapon, loot, is_boss=False):
         self.name = name
         self.race = race
@@ -113,11 +115,5 @@ class Race:
             self.health += 125
             self.magicka += 2
 
-Annihilator = Weapon('The Annihilator', 100, [9000,9000,9000])
-print(Annihilator.damage)
-#print(Annihilator.seed[0])
-class1 = class_base('Dick', ['Att1', 'att2'])
-Main = Player('Glazey', Race('Orc', 100, 1000, 90000), Annihilator, ['aaa'], ['AAA'])
-print('Player {0.name}\n of race {0.race.name} with a base attack of {0.base_attack}\n now has an attack of {0.curweapon.damage} because of weapon {0.curweapon.name}'.format(Main))
-Woot = class_base('Testing', {'Wtf': 10, 'AAAAAA': 20})
-print(Main.curweapon.damage)   
+test = class_base("Health", {'health': 1900})
+print(test.healthbuff)
