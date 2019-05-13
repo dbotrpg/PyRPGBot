@@ -91,10 +91,7 @@ class Race:
             self.health += 150
             self.magicka += 5
 
-#print(Race('Dwarf', 10, 100, 10).name)
-#print(Race('Dwarf', 10, 100, 10).attack)
-#print(Race('Dwarf', 10, 100, 10).health)
-#print(Race('Dwarf', 10, 100, 10).magicka)
+
 
 Main = Player('Glazey', Race('Dwarf', 10, 100, 10), Weapon('The Annihilator', 2000), ['AAA'], ['AAA'])
 #print('Player {0.name}\n of race {0.race.name} with a base attack of {0.base_attack}\n now has an attack of {0.race.attack} because of weapon {0.curweapon.name}'.format(Main))
