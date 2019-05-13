@@ -93,7 +93,6 @@ class Race:
         self.health = health
         self.magicka = magicka
 
-
         #Different races get different THINGS.
         if self.name == 'Human':
             self.attack += 10
@@ -114,6 +113,18 @@ class Race:
             self.attack += 15
             self.health += 125
             self.magicka += 2
+
+class Fights:
+    def __init__(self, player, enemy):
+        #Takes a player & an enemy(Can be a player too.)
+        self.player = player
+        self.enemy = enemy
+        self.phealth = self.player.health
+        self.ehealth = self.enemy.health
+        self.pdamage = self.player.attack
+        self.edamage = self.enemy.attack
+
+        
 
 test = class_base("Health", {'health': 1900})
 print(test.healthbuff)
