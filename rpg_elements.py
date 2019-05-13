@@ -20,12 +20,11 @@ class Weapon:
             self.hidden_level = seed[1]
             self.usable_at = seed[2]
         if self.level >= 10:
-            print(self.damage)
             if self.hidden_level >=20:
                 dam_buf = self.hidden_level / random.randrange(10, 50)
                 actdamage = self.damage * dam_buf
                 self.damage = round(actdamage)
-                print(self.damage)
+
             
         elif self.level <=9:
             self.damage = self.damage * 0.2
@@ -38,7 +37,7 @@ class class_base:
         if "health" or "Health" in self.attributes:
             healthbuff = self.attributes.get("health")
             self.healthbuff = healthbuff
-            print(healthbuff)
+
     
 
 class Player:
@@ -69,7 +68,9 @@ class Enemy:
     ### Takes a name(str), race_enemy(see class race_enemy.), weapon(see class weapon.), loot(list), is_boss boolean
     def __init__(self, name, race, weapon, loot, is_boss=False):
         self.name = name
+        self.health = random.randrange(100,600)
         self.race = race
+        self.damage = random.randrange(50, 200)
         self.base_attack = race.attack
         self.level = random.randrange(1, 100)
         self.cur_weapon = weapon
@@ -130,13 +131,28 @@ class Fights:
         @property
         def player_damage(self):
             player_damage = self.pdamage / (self.plevel * self.ehealth)
-            return player_damage
+            if self.player.curweapon is not None:    
+                return player_damage
         
         @property
         def enemy_damage(self):
-            player_damage = self.edamage / (self.elevel * self.phealth)
-            return enemy_damage
+            enemy_damage = self.edamage / (self.elevel * self.phealth)
+            if self.enemy.curweapon is not None:
+                return enemy_damage
         
 
 test = class_base("Health", {'health': 1900})
-print(test.healthbuff)
+#print(test.healthbuff)
+
+Weapon_Main = Weapon("The Annihilator", 9000, [90000, 90000, 90000])
+Main_Race = Race("Dwarf", 100000, 100000, 100000)
+Main_Class = class_base("Health", {"Health": 10000})
+main = Player("Glazey", Main_Race, 100, Weapon_Main, ['AAAAA'], Main_Class)
+
+Secondary_Weapon = Weapon("Slayer", 1, [1,1,1])
+Secondary_Race = Race("Orc", 100, 1, 100)
+Secondary = Enemy("Ravok", Secondary_Race, Secondary_Weapon, {"Dull Sword": 1}, True)
+
+fight = Fights(main, Secondary)
+print(fight.edamage)
+print(fight.pdamage)
