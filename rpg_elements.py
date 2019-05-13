@@ -43,10 +43,11 @@ class class_base:
 
 class Player:
     ### Takes name(str), race(See class race), weapon(see class weapon), perks(see class Perks), class_base(See class_base, defines char. class)
-    def __init__(self, name, race, weapon, perks, class_base):
+    def __init__(self, name, race, level, weapon, perks, class_base):
         self.name = name
         self.race = race
         self.perks = perks
+        self.level = level
         self.profession = class_base
         self.magicka = race.magicka
         self.max_health = race.health
@@ -123,7 +124,18 @@ class Fights:
         self.ehealth = self.enemy.health
         self.pdamage = self.player.attack
         self.edamage = self.enemy.attack
+        self.plevel = self.player.level
+        self.elevel = self.enemy.level
 
+        @property
+        def player_damage(self):
+            player_damage = self.pdamage / (self.plevel * self.ehealth)
+            return player_damage
+        
+        @property
+        def enemy_damage(self):
+            player_damage = self.edamage / (self.elevel * self.phealth)
+            return enemy_damage
         
 
 test = class_base("Health", {'health': 1900})
