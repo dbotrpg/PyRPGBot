@@ -140,19 +140,3 @@ class Fights:
             if self.enemy.curweapon is not None:
                 return enemy_damage
         
-
-test = class_base("Health", {'health': 1900})
-#print(test.healthbuff)
-
-Weapon_Main = Weapon("The Annihilator", 9000, [90000, 90000, 90000])
-Main_Race = Race("Dwarf", 100000, 100000, 100000)
-Main_Class = class_base("Health", {"Health": 10000})
-main = Player("Glazey", Main_Race, 100, Weapon_Main, ['AAAAA'], Main_Class)
-
-Secondary_Weapon = Weapon("Slayer", 1, [1,1,1])
-Secondary_Race = Race("Orc", 100, 1, 100)
-Secondary = Enemy("Ravok", Secondary_Race, Secondary_Weapon, {"Dull Sword": 1}, True)
-
-fight = Fights(main, Secondary)
-print(fight.edamage)
-print(fight.pdamage)
