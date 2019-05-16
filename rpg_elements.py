@@ -1,5 +1,10 @@
 import random
 
+#TODO:
+# What needs to be done is:
+#Perk mechanics
+#Fleshing out other classes
+
 class Weapon:
     ### Requires a Name(str), damage(int), seed(list, which consists of 3 integers.)
     ## To keep it fair, the seed should NEVER contain items highter then 100.
@@ -126,6 +131,8 @@ class Fights:
         self.edamage = self.enemy.attack
         self.plevel = self.player.level
         self.elevel = self.enemy.level
+        self.player_damage = int
+        self.enemy_damage = int
 
         @property
         def player_damage(self):
