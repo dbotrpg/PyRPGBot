@@ -25,7 +25,6 @@ class Weapon:
                 actdamage = self.damage * dam_buf
                 self.damage = round(actdamage)
 
-            
         elif self.level <=9:
             self.damage = self.damage * 0.2
 
@@ -139,4 +138,3 @@ class Fights:
             enemy_damage = self.edamage / (self.elevel * self.phealth)
             if self.enemy.curweapon is not None:
                 return enemy_damage
-        
